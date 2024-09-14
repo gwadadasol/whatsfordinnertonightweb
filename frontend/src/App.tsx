@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import RecipeButton from './components/RecipeButton';
 import RecipeDisplay from './components/RecipeDisplay';
-import { Grid2, ListItem } from '@mui/material';
+import { Box, Container, Divider, Grid2, ListItem, Stack } from '@mui/material';
 
 // Sample list of recipes
 const recipes = [
@@ -32,15 +32,20 @@ const App: React.FC = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-    <Grid2 spacing={0.5}>
-      <ListItem>
-      <RecipeButton onClick={handleSelectRecipe} />
-      </ListItem>
-      <ListItem>
-      <RecipeDisplay selectedRecipe={selectedRecipe} showDetails={showDetails} onShowDetails={handleShowDetails} />
-      </ListItem>
-      </Grid2>
+    // <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+    <div>
+      <Container maxWidth="sm">
+      <Box sx={{ width: '100%' }} style={{alignContent: "center"}} alignItems= 'center'>
+        <Stack spacing={0.5} divider={<Divider orientation="vertical" flexItem />}>
+          <ListItem>
+            <RecipeButton onClick={handleSelectRecipe} />
+          </ListItem>
+          <ListItem>
+            <RecipeDisplay selectedRecipe={selectedRecipe} showDetails={showDetails} onShowDetails={handleShowDetails} />
+          </ListItem>
+        </Stack>
+      </Box>
+      </Container>
     </div>
   );
 };
