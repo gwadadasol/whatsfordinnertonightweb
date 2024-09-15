@@ -1,6 +1,3 @@
-// "use client"
-
-// components/RecipeDisplay.tsx
 import { Box, Button, Stack, ListItem } from '@mui/material';
 import React from 'react';
 
@@ -11,38 +8,40 @@ interface RecipeDisplayProps {
 }
 
 const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ selectedRecipe, showDetails, onShowDetails }) => {
-
-
   if (selectedRecipe == null) return null;
   const selectedRecipeDetails: string[] = selectedRecipe.details.split(',');
 
-
   return (
     <div style={{ textAlign: 'center' }}>
-      <Box>
+
+      <Box sx={{ width: '100%' }} style={{ alignContent: "center" }} alignItems='left'>
         <Stack direction="column" spacing={2}>
           <ListItem>
-            <h2>{selectedRecipe.name}</h2>
-          </ListItem>
-          <ListItem>
             {!showDetails && (
-              <Button onClick={onShowDetails} >
-                Great!
-              </Button>
+              <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+                <Button variant="outlined" onClick={onShowDetails}>
+                {selectedRecipe.name} 
+                </Button>
+              </div>
             )}
-            <table>
-              <tr><th></th></tr>
-
-              <tbody>
-                {showDetails && selectedRecipeDetails.map((item, index) => (
-                  <tr key={index}>
-                    <td >{item}</td>
+            {showDetails && (
+              <table style={{ margin: 'auto', textAlign: 'center', border: '0px solid grey', borderCollapse: 'collapse' }}>
+                <thead style={{ border: '1px solid grey', textAlign: 'left' }}>
+                  <tr><th>{selectedRecipe.name} </th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style={{ border: '0px solid grey', textAlign: 'left' }}>
+                      <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                        {selectedRecipeDetails.map((item, index) => (
+                          <li key={index}>{item}</li>
+                        ))}
+                      </ul>
+                    </td>
                   </tr>
-
-                ))}
-              </tbody>
-            </table>
-
+                </tbody>
+              </table>
+            )}
           </ListItem>
         </Stack>
       </Box>

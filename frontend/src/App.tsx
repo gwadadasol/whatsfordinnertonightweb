@@ -40,6 +40,12 @@ const App: React.FC = () => {
           <ListItem>
             <RecipeButton onClick={handleSelectRecipe} />
           </ListItem>
+          </Stack>
+      </Box>
+      </Container>
+      <Container maxWidth="sm">
+      <Box sx={{ width: '100%' }} style={{alignContent: "center"}} alignItems= 'center'>
+        <Stack spacing={0.5} divider={<Divider orientation="vertical" flexItem />}>
           <ListItem>
             <RecipeDisplay selectedRecipe={selectedRecipe} showDetails={showDetails} onShowDetails={handleShowDetails} />
           </ListItem>
