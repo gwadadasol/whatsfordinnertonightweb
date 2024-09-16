@@ -15,8 +15,5 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app/out .
 
-# Expose the port the app runs on
-EXPOSE 8080
-
 # Run the app
 ENTRYPOINT ["dotnet", "Recipes.dll"]
