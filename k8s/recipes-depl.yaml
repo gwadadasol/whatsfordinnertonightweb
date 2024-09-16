@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recipes-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: recipesservice
+  template:
+    metadata:
+      labels:
+        app: recipesservice
+    spec:
+      containers:
+        - name: recipesservice
+          image: gwadadasol/recipesservice:latest
+          ports:
+          - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: recipes-clusterip-srv
+spec:
+  type: ClusterIP
+  selector: 
+    app: recipesservice
+  ports:
+  - name: recipesservice
+    protocol: TCP
+    port: 80
+    targetPort: 8080
