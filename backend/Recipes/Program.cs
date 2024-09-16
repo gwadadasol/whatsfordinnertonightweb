@@ -50,7 +50,7 @@ var  recipes = new List<Recipe>
   };
 
 
-app.MapGet("/receipes", () =>
+app.MapGet("/recipes", () =>
 {
     return recipes;
 })
