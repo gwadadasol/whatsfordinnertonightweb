@@ -2,14 +2,14 @@ import { Box, Button, Stack, ListItem } from '@mui/material';
 import React from 'react';
 
 interface RecipeDisplayProps {
-  selectedRecipe: { name: string; details: string } | null;
+  selectedRecipe: { name: string; ingredients: string[] } | null;
   showDetails: boolean;
   onShowDetails: () => void;
 }
 
 const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ selectedRecipe, showDetails, onShowDetails }) => {
   if (selectedRecipe == null) return null;
-  const selectedRecipeDetails: string[] = selectedRecipe.details.split(',');
+  const selectedRecipeDetails: string[] = selectedRecipe.ingredients;
 
   return (
     <div style={{ textAlign: 'center' }}>

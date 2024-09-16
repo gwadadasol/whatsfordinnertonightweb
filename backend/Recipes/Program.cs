@@ -6,6 +6,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("AllowAllOrigins",
+            builder => builder.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod());
+    });
+
 
 var app = builder.Build();
 
@@ -15,6 +23,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+    app.UseCors("AllowAllOrigins");
 
 //app.UseHttpsRedirection();
 
@@ -52,6 +61,7 @@ var  recipes = new List<Recipe>
 
 app.MapGet("/recipes", () =>
 {
+    Console.WriteLine("GET /recipes");
     return recipes;
 })
 .WithName("GetRecipes")
