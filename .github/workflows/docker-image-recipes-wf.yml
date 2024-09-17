@@ -28,7 +28,7 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
       with:
-        context: .
+        context: ./backend/Recipes/.
         push: true
         tags: docker.io/gwadadasol/recipesservice:latest
 
