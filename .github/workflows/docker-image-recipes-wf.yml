@@ -5,12 +5,12 @@ on:
     branches:
       - main
     paths:
-      - './backend/Recipes/**'
+      - 'backend/Recipes/**'
   pull_request:
     branches:
       - main
     paths:
-      - './backend/Recipes/**'
+      - 'backend/Recipes/**'
 
 jobs:
   build:
