@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'recipes-service/**'
   pull_request:
     branches:
       - main
