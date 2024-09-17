@@ -27,8 +27,6 @@ if (app.Environment.IsDevelopment())
 
 //app.UseHttpsRedirection();
 
-
-
 var  recipes = new List<Recipe>
   { 
     new Recipe
@@ -57,7 +55,6 @@ var  recipes = new List<Recipe>
             Ingredients = new List<string> { "Tortillas", "ground beef", "lettuce", "cheese", "tomatoes" },
         },
   };
-
 
 app.MapGet("/recipes", () =>
 {
