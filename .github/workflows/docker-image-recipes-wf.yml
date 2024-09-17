@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - './backend/Recipes/**'
   pull_request:
     branches:
       - main
+    paths:
+      - './backend/Recipes/**'
 
 jobs:
   build:
