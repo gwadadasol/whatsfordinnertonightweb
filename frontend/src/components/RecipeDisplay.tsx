@@ -16,7 +16,6 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ selectedRecipe, showDetai
 
       <Box sx={{ width: '100%' }} style={{ alignContent: "center" }} alignItems='left'>
         <Stack direction="column" spacing={2}>
-          <ListItem>
             {!showDetails && (
               <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
                 <Button variant="outlined" onClick={onShowDetails}>
@@ -42,7 +41,6 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ selectedRecipe, showDetai
                 </tbody>
               </table>
             )}
-          </ListItem>
         </Stack>
       </Box>
     </div>
