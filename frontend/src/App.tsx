@@ -26,7 +26,8 @@ const App: React.FC = () => {
  const fetchRecipes = async () => {
   try {
     // const response = await axios.get('http://localhost:32333/recipes'); // Replace with your REST service URL
-    const response = await axios.get('http://recipes-clusterip-srv:80/recipes'); // Replace with your REST service URL
+    // const response = await axios.get('http://recipes-clusterip-srv:80/recipes'); // Replace with your REST service URL
+    const response = await axios.get('http://wfdt.com/recipes'); // Replace with your REST service URL
     console.log(response);
     setRecipes(response.data);
   } catch (error) {
