@@ -22,33 +22,10 @@ const App: React.FC = () => {
   const [showDetails, setShowDetails] = useState(false);
   const [recipes, setRecipes] = useState<{ name: string; ingredients: string[] }[]>([]);
 
-  const clusterUrl = 'http://recipes-clusterip-srv/recipes';
-  const localUrl = 'http://localhost:3000/recipes';
-  const wfdtUrl = 'http://wfdt.com:30080/recipes';
+  const wfdtUrl = 'http://wfdt.com/recipes';
 
   // Function to fetch recipes from the REST service
-  // const fetchRecipesLocal = async () => {
-  //   try {
-  //     console.log(localUrl);
-  //     const response = await axios.get(localUrl); // Replace with your REST service URL
-  //     setRecipes(response.data);
-  //   } catch (error) {
-  //     console.error('Error fetching recipes:', error);
-  //   }
-  // }
-
-
-  // const fetchRecipes = async () => {
-  //   try {
-  //     // const response = await axios.get('http://localhost:32333/recipes'); // Replace with your REST service URL
-  //     console.log(clusterUrl);
-  //     const response = await axios.get(clusterUrl); // Replace with your REST service URL
-  //     setRecipes(response.data);
-  //   } catch (error) {
-  //     console.error('Error fetching recipes:', error);
-  //   }
-  // }
-    const fetchRecipesWfdt = async () => {
+    const fetchRecipes = async () => {
       try {
         console.log(wfdtUrl);
         const responseCluster = await axios.get(wfdtUrl); // Replace with your REST service URL
@@ -64,9 +41,7 @@ const App: React.FC = () => {
 
   // Use useEffect to fetch recipes when the component mounts
   useEffect(() => {
-    // fetchRecipes();
-    fetchRecipesWfdt();
-    // fetchRecipesLocal();
+    fetchRecipes();
   }, []);
 
 
