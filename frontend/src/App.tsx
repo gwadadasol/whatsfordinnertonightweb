@@ -32,18 +32,15 @@ const App: React.FC = () => {
         console.log(responseCluster);
         setRecipes(responseCluster.data);
       
-      
       } catch (error) {
         console.error('Error fetching recipes:', error);
       }
-  
   };
 
   // Use useEffect to fetch recipes when the component mounts
   useEffect(() => {
     fetchRecipes();
   }, []);
-
 
   // Function to select a random recipe
   const handleSelectRecipe = () => {
