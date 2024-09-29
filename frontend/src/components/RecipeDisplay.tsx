@@ -1,4 +1,3 @@
-import { Box, Button, Stack, ListItem } from '@mui/material';
 import React from 'react';
 
 interface RecipeDisplayProps {
@@ -12,37 +11,34 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ selectedRecipe, showDetai
   const selectedRecipeDetails: string[] = selectedRecipe.ingredients;
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div>
 
-      <Box sx={{ width: '100%' }} style={{ alignContent: "center" }} alignItems='left'>
-        <Stack direction="column" spacing={2}>
-            {!showDetails && (
-              <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-                <Button variant="outlined" onClick={onShowDetails}>
-                {selectedRecipe.name} 
-                </Button>
-              </div>
-            )}
-            {showDetails && (
-              <table style={{ margin: 'auto', textAlign: 'center', border: '0px solid grey', borderCollapse: 'collapse' }}>
-                <thead style={{ border: '1px solid grey', textAlign: 'left' }}>
-                  <tr><th>{selectedRecipe.name} </th></tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td style={{ border: '0px solid grey', textAlign: 'left' }}>
-                      <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                        {selectedRecipeDetails.map((item, index) => (
-                          <li key={index}>{item}</li>
-                        ))}
-                      </ul>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            )}
-        </Stack>
-      </Box>
+      {!showDetails && (
+        <div className="flex items-center p-2 justify-center" >
+          <button className="items-center text-center"
+          onClick={onShowDetails}>{selectedRecipe.name} </button>
+        </div>
+      )}
+      {showDetails && (
+        <div className="p-2 flex items-center text-center justify-center">
+          <table >
+            <thead >
+              <tr><th>{selectedRecipe.name} </th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td >
+                  <ul>
+                    {selectedRecipeDetails.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

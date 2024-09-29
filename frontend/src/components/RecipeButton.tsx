@@ -1,6 +1,5 @@
 // "use client"
 // components/RecipeButton.tsx
-import { Button } from '@mui/material';
 import React from 'react';
 
 interface RecipeButtonProps {
@@ -9,9 +8,13 @@ interface RecipeButtonProps {
 
 const RecipeButton: React.FC<RecipeButtonProps> = ({ onClick }) => {
   return (
-    <Button variant="outlined" onClick={onClick} >
+    
+    <div style={{ textAlign: 'center' }}>
+      <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+    onClick={onClick} >
       What's for dinner tonight?
-    </Button>
+    </button>
+    </div>
   );
 };
 
