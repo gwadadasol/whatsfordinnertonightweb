@@ -1,4 +1,8 @@
+using System.Text.Json;
+
 using WhatsForDinnerTonight;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +31,8 @@ if (app.Environment.IsDevelopment())
     app.UseCors("AllowAllOrigins");
 
 //app.UseHttpsRedirection();
+var loggerFactory = app.Services.GetRequiredService<ILoggerFactory>();
+ILogger logger = loggerFactory.CreateLogger("MyApp");
 
 var  recipes = new List<Recipe>
   { 
@@ -60,9 +66,22 @@ var  recipes = new List<Recipe>
 app.MapGet("/recipes", () =>
 {
     Console.WriteLine("GET /recipes");
+    string jsonString = JsonSerializer.Serialize(recipes);
+    // Console.WriteLine(jsonString);
+     logger.LogDebug(jsonString);
     return recipes;
 })
-.WithName("GetRecipes")
+.WithName("GetAllRecipes")
+.WithOpenApi(); 
+
+app.MapGet("/recipes/{ingredient}", (string ingredient) =>
+{
+    IEnumerable<Recipe> filteredRecipes =  recipes.Where(r => r.Ingredients.Contains(ingredient, StringComparer.OrdinalIgnoreCase)).ToList();
+    string jsonString = JsonSerializer.Serialize(filteredRecipes);
+    logger.LogDebug(jsonString);
+    return filteredRecipes;
+})
+.WithName("GetRecipesWithIngredient")
 .WithOpenApi();
 
 app.Run();
