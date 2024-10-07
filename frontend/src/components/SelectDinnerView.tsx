@@ -3,6 +3,7 @@ import axios from 'axios'; // Import axios for making API calls
 import RecipeButton from "./RecipeButton";
 import RecipeDisplay from "./RecipeDisplay";
 import { Recoverable } from "repl";
+import { fetchRecipes, fetchRecipesWithIngredient } from "../helpers/RecipeHelper";
 
 const SelectDinnerView: React.FC = () => {
   const [selectedRecipe, setSelectedRecipe] = useState<{ name: string; ingredients: string[] } | null>(null);
@@ -11,54 +12,32 @@ const SelectDinnerView: React.FC = () => {
   const [recipeSelectionView, setRecipeSelectionView] = useState(true);
   const [ingredientFiler, setIngredientFilter] = useState("");
 
-  const wfdtUrl = 'http://wfdt.com/recipes';
-
-  const fetchRecipes = async () => {
-    try {
-      console.log(wfdtUrl);
-      const responseCluster = await axios.get(wfdtUrl); // Replace with your REST service URL
-      console.log(responseCluster);
-      setRecipes(responseCluster.data);
-
-    } catch (error) {
-      console.error('Error fetching recipes:', error);
-    }
-  };
+  
 
   // Use useEffect to fetch recipes when the component mounts
   useEffect(() => {
-    fetchRecipes();
+    fetchRecipes( setRecipes);
   }, []);
 
   // Function to select a random recipe
   const handleSelectRecipe = () => {
     console.log(ingredientFiler);
-    if (ingredientFiler === "") {
-      const randomRecipe = recipes[Math.floor(Math.random() * recipes.length)];
-      setSelectedRecipe(randomRecipe);
-      // setShowDetails(false);
+    if (ingredientFiler === "") 
+    {
+      fetchRecipes( setRecipes);
     }
-    else {
-      // const filteredRecipes = recipes.filter((recipe) => { return recipe.ingredients.map((ingredient) => {return ingredient.toLowerCase()}).includes(ingredientFiler.toLocaleLowerCase()) });
-      const filteredRecipes = recipes.filter((recipe) => 
-        recipe.ingredients.some(ingredient => 
-          ingredient.toLowerCase().includes(ingredientFiler.toLocaleLowerCase())));
-        
-      const randomRecipe = filteredRecipes[Math.floor(Math.random() * filteredRecipes.length)];
-      setSelectedRecipe(randomRecipe);
-      // setShowDetails(false);
+    else 
+    {
+      fetchRecipesWithIngredient( setRecipes, ingredientFiler);
     }
-  }
+    const randomRecipe = recipes[Math.floor(Math.random() * recipes.length)];
+    setSelectedRecipe(randomRecipe);
+}
 
     // Function to show recipe details
-    const handleShowDetails = () => {
-      setShowDetails(true);
-    };
+    const handleShowDetails = () => { setShowDetails(true); };
 
-    const handleIngredientFilter = (ingredient: string) => {
-      console.log(ingredient);
-      setIngredientFilter(ingredient);
-    }
+    const handleIngredientFilter = (ingredient: string) => { setIngredientFilter(ingredient);}
 
     return (
       <div className="p-4">
