@@ -1,7 +1,9 @@
+import RecipeList from "./RecipeList";
+
 const Admin: React.FC = ()=> {
     return(
         <div>
-            <h1>Admin</h1>
+            <RecipeList />
         </div>
     );
 };
