@@ -12,39 +12,37 @@ const SelectDinnerView: React.FC = () => {
   const [recipeSelectionView, setRecipeSelectionView] = useState(true);
   const [ingredientFiler, setIngredientFilter] = useState("");
 
-  
+
 
   // Use useEffect to fetch recipes when the component mounts
   useEffect(() => {
-    fetchRecipes( setRecipes);
+    fetchRecipes(setRecipes);
   }, []);
 
   // Function to select a random recipe
   const handleSelectRecipe = () => {
     console.log(ingredientFiler);
-    if (ingredientFiler === "") 
-    {
-      fetchRecipes( setRecipes);
+    if (ingredientFiler === "") {
+      fetchRecipes(setRecipes);
     }
-    else 
-    {
-      fetchRecipesWithIngredient( setRecipes, ingredientFiler);
+    else {
+      fetchRecipesWithIngredient(setRecipes, ingredientFiler);
     }
     const randomRecipe = recipes[Math.floor(Math.random() * recipes.length)];
     setSelectedRecipe(randomRecipe);
-}
-
-    // Function to show recipe details
-    const handleShowDetails = () => { setShowDetails(true); };
-
-    const handleIngredientFilter = (ingredient: string) => { setIngredientFilter(ingredient);}
-
-    return (
-      <div className="p-4">
-        <RecipeButton onClick={handleSelectRecipe} onIngredientInput={handleIngredientFilter} />
-        <RecipeDisplay selectedRecipe={selectedRecipe} showDetails={showDetails} onShowDetails={handleShowDetails} />
-      </div>
-    );
   }
 
-  export default SelectDinnerView;
+  // Function to show recipe details
+  const handleShowDetails = () => { setShowDetails(true); };
+
+  const handleIngredientFilter = (ingredient: string) => { setIngredientFilter(ingredient); }
+
+  return (
+    <div className="container p-4 ">
+        <RecipeButton onClick={handleSelectRecipe} onIngredientInput={handleIngredientFilter} />
+        <RecipeDisplay selectedRecipe={selectedRecipe} showDetails={showDetails} onShowDetails={handleShowDetails} />
+    </div>
+  );
+}
+
+export default SelectDinnerView;

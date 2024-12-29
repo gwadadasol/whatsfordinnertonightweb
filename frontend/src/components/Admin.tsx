@@ -1,11 +1,12 @@
-import RecipeList from "./RecipeList";
+import React from 'react';
+import AdminActions from './AdminActions';
 
-const Admin: React.FC = ()=> {
-    return(
-        <div>
-            <RecipeList />
-        </div>
-    );
+const Admin: React.FC = () => {
+  return (
+    <div>
+      <AdminActions />
+    </div>
+  );
 };
 
 export default Admin;

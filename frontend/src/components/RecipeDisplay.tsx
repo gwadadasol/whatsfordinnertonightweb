@@ -11,32 +11,17 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ selectedRecipe, showDetai
   const selectedRecipeDetails: string[] = selectedRecipe.ingredients;
 
   return (
-    <div>
-
-      {!showDetails && (
-        <div className="flex items-center p-2 justify-center" >
-          <button className="items-center text-center"
-          onClick={onShowDetails}>{selectedRecipe.name} </button>
-        </div>
-      )}
-      {showDetails && (
-        <div className="p-2 flex items-center text-center justify-center">
-          <table >
-            <thead >
-              <tr><th>{selectedRecipe.name} </th></tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td >
-                  <ul>
-                    {selectedRecipeDetails.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+    <div className="block text-lg">
+       {showDetails && (
+        <div className="mt-4">
+          <h2 className="text-1xl font-bold mb-2">{selectedRecipe.name}</h2>
+          <div className="flex flex-col items-start">
+            <ul className="list-disc pl-5 mb-4">
+              {selectedRecipeDetails.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       )}
     </div>
